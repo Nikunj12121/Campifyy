@@ -23,16 +23,16 @@ const User  =  require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
 
 const helmet = require('helmet');
-const { MongoStore } = require('connect-mongo');
+//const { MongoStore } = require('connect-mongo');
 
 const MongoDBStore = require("connect-mongo")(session);
 
-//  const dbUrl = 'mongodb://localhost:27017/campify_final';
- const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campify_final';
+  const dbUrl = 'mongodb://localhost:27017/campify_final';
+// const dbUrl = process.env.DB_URL;
 
 // 'mongodb://localhost:27017/campify_final'
 mongoose.connect(dbUrl,{
- //   useNewUrlParser : true,
+    // useNewUrlParser : true,
     // useCreateIndex:true,
     // useUnifiedTopology:true,
     // useFindAndModify:false
@@ -59,7 +59,7 @@ app.use(mongoSanitize({
 
 const store = new MongoDBStore({
     url: dbUrl,
-    secret: 'thishouldbeabettersecret',
+    secret: 'thisshouldbeabettersecret',
     touchAfter: 24*60*60
 });
 
